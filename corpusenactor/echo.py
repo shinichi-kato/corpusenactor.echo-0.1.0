@@ -14,8 +14,6 @@ import pickle
 from collections import Counter
 import numpy as np
 
-import cloudstorage
-from google.appengine.api import app_identity
 
 from tinysegmenter import TinySegmenter
 Segmenter = TinySegmenter()

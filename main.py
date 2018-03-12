@@ -21,8 +21,6 @@ app = Flask(__name__)
 
 MAIN_LOG_DISPLAY_LEN = 10
 MAIN_LOG_PRESERVE_LEN = 100
-LOG_FILENAME = '/'+BUCKET_NAME+"/main_log"
-
 
 
 @app.route('/',methods=['POST','GET'])
