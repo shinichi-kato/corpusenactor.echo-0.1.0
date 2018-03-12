@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<HTML>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<BODY OnLoad="document.form1.text.focus()">
+
+<div style="padding: 10px; background-color: #EEEEEE;">
+
+<FORM ACTION="./" method="POST" name="form1">
+<INPUT TYPE="text" name="text" ><INPUT TYPE="submit" value="送信">
+</FORM>
+</DIV>
+{% for line in lines %}
+<div>{{line.speaker}}</div>
+<div>{{line.text}}</div>
+{% endfor %}
+
+
+</BODY>
+</HTML>
