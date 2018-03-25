@@ -126,9 +126,9 @@ class Echo:
             for word,count in v.items():
                 j = self.feat.index(word)
                 wv[i,j] = count
-
-            tf[i] = wv[i] / np.sum(wv[i])
             i+=1
+
+        tf = wv / np.sum(wv,axis=0)
 
 
         """
@@ -137,7 +137,7 @@ class Echo:
         idf(t) = log((全行数)/ df(t) )+1
         """
         df = np.apply_along_axis(np.count_nonzero,axis=0,arr=wv)
-        idf = np.log(tf.shape[0]/df) + 1
+        idf = np.log(tf.shape[0]/df+1)
 
         tfidf = tf*idf
 
@@ -183,7 +183,7 @@ class Echo:
         """ tfidf """
 
         tf = wv / nd
-        idf = np.log(tf.shape[0]/self.corpus_df)+1
+        idf = np.log(tf.shape[0]/self.corpus_df+1)
         tfidf = tf*idf
 
         return tfidf
@@ -227,7 +227,7 @@ class Echo:
 
 
 def main():
-    ce = CorpusEnactor('chatbot/chatbot.yaml')
+    ce = Echo('chatbot/chatbot.yaml')
     # print("feat=",ce.feat)
     # print("tfidf=",ce.corpus_tfidf)
     # v = ce.speech_to_tfidf("動物園へ行こう")
@@ -236,8 +236,9 @@ def main():
     #
     # for r in results:
     #     print(r,ce.corpus[r])
-    print(ce.reply("動物園へ行こう"))
-
+    print(FEAT_CACHE,"created")
+    print(TFIDF_CACHE,"created")
+    
 
 if __name__ == '__main__':
     main()
